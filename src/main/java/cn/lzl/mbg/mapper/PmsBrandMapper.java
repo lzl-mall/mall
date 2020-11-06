@@ -1,5 +1,6 @@
 package cn.lzl.mbg.mapper;
 
+import cn.lzl.common.api.BrandParam;
 import cn.lzl.mbg.model.PmsBrand;
 import cn.lzl.mbg.model.PmsBrandExample;
 import java.util.List;
@@ -33,4 +34,6 @@ public interface PmsBrandMapper {
     int updateByPrimaryKeyWithBLOBs(PmsBrand record);
 
     int updateByPrimaryKey(PmsBrand record);
+
+    List<PmsBrand> queryListByPageAndCondition(BrandParam brandParam);
 }

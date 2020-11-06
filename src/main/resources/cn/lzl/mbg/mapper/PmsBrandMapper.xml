@@ -81,6 +81,14 @@
   <sql id="Blob_Column_List">
     brand_story
   </sql>
+
+  <sql id="Page_Condition_List">
+    <where>
+      <if test="name!=null and name != ''">
+      and name like concat(%,#{name},%)
+      </if>
+    </where>
+  </sql>
   <select id="selectByExampleWithBLOBs" parameterType="cn.lzl.mbg.model.PmsBrandExample" resultMap="ResultMapWithBLOBs">
     select
     <if test="distinct">
@@ -112,7 +120,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
-    select 
+    select
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
@@ -133,13 +141,13 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into pms_brand (name, first_letter, sort, 
-      factory_status, show_status, product_count, 
-      product_comment_count, logo, big_pic, 
+    insert into pms_brand (name, first_letter, sort,
+      factory_status, show_status, product_count,
+      product_comment_count, logo, big_pic,
       brand_story)
-    values (#{name,jdbcType=VARCHAR}, #{firstLetter,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, 
-      #{factoryStatus,jdbcType=INTEGER}, #{showStatus,jdbcType=INTEGER}, #{productCount,jdbcType=INTEGER}, 
-      #{productCommentCount,jdbcType=INTEGER}, #{logo,jdbcType=VARCHAR}, #{bigPic,jdbcType=VARCHAR}, 
+    values (#{name,jdbcType=VARCHAR}, #{firstLetter,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER},
+      #{factoryStatus,jdbcType=INTEGER}, #{showStatus,jdbcType=INTEGER}, #{productCount,jdbcType=INTEGER},
+      #{productCommentCount,jdbcType=INTEGER}, #{logo,jdbcType=VARCHAR}, #{bigPic,jdbcType=VARCHAR},
       #{brandStory,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="cn.lzl.mbg.model.PmsBrand">
@@ -218,7 +226,16 @@
       <include refid="Example_Where_Clause" />
     </if>
   </select>
-  <update id="updateByExampleSelective" parameterType="map">
+    <select id="queryListByPageAndCondition" parameterType="cn.lzl.common.api.BrandParam" resultType="cn.lzl.mbg.model.PmsBrand">
+     select
+      <include refid="Base_Column_List" />
+      ,
+      <include refid="Blob_Column_List" />
+      from pms_brand
+      <include refid="Page_Condition_List"></include>
+      limit #{pageStart},#{pageSize}
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
     update pms_brand
     <set>
       <if test="record.id != null">
