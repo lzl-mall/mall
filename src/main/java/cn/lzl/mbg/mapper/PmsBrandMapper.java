@@ -1,13 +1,12 @@
 package cn.lzl.mbg.mapper;
 
-import java.util.List;
-
 import cn.lzl.mbg.model.PmsBrand;
 import cn.lzl.mbg.model.PmsBrandExample;
+import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface PmsBrandMapper {
-    long countByExample(PmsBrandExample example);
+    int countByExample(PmsBrandExample example);
 
     int deleteByExample(PmsBrandExample example);
 
