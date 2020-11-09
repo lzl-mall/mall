@@ -1,5 +1,6 @@
 package cn.lzl.service;
-import cn.lzl.mbg.model.PmsBrand;
+
+import cn.lzl.model.PmsBrand;
 
 import java.util.List;
 
