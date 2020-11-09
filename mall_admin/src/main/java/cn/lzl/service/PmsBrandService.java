@@ -1,10 +1,6 @@
 package cn.lzl.service;
 
-
-
-
-import cn.lzl.common.api.BrandParam;
-import cn.lzl.mbg.model.PmsBrand;
+import cn.lzl.model.PmsBrand;
 
 import java.util.List;
 
@@ -25,5 +21,5 @@ public interface PmsBrandService {
 
     PmsBrand getBrand(Long id);
 
-    List<PmsBrand> queryListByPageAndCondition(BrandParam brandParam);
+    /*List<PmsBrand> queryListByPageAndCondition(BrandParam brandParam);*/
 }

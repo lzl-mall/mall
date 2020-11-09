@@ -1,9 +1,9 @@
 package cn.lzl.service.impl;
 
-import cn.lzl.common.api.BrandParam;
-import cn.lzl.mbg.mapper.PmsBrandMapper;
-import cn.lzl.mbg.model.PmsBrand;
-import cn.lzl.mbg.model.PmsBrandExample;
+
+import cn.lzl.mapper.PmsBrandMapper;
+import cn.lzl.model.PmsBrand;
+import cn.lzl.model.PmsBrandExample;
 import cn.lzl.service.PmsBrandService;
 import com.github.pagehelper.PageHelper;
 import org.springframework.stereotype.Service;
@@ -46,8 +46,8 @@ public class PmsBrandServiceImpl implements PmsBrandService {
         return brandMapper.selectByPrimaryKey(id);
     }
 
-    @Override
+    /*@Override
     public List<PmsBrand> queryListByPageAndCondition(BrandParam brandParam) {
         return brandMapper.queryListByPageAndCondition(brandParam);
-    }
+    }*/
 }

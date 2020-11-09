@@ -1,16 +1,11 @@
 package cn.lzl.controller;
-
-import cn.lzl.common.api.BrandParam;
 import cn.lzl.common.api.CommonPage;
 import cn.lzl.common.api.CommonResult;
-import cn.lzl.mbg.model.PmsBrand;
+import cn.lzl.model.PmsBrand;
 import cn.lzl.service.PmsBrandService;
-import org.aspectj.weaver.ast.Var;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -86,15 +81,13 @@ public class PmsBrandController {
         return commonResult;
     }
     /**
-     * 条件查询加分页
+     * 分页查询
      * @return
      */
     @RequestMapping(value = "/list", method = RequestMethod.POST)
-    public CommonResult<CommonPage<PmsBrand>> queryListByPageAndCondition(BrandParam brandParam){
+    public CommonResult<CommonPage<PmsBrand>> queryListByPageAndCondition(Integer pageNum,Integer pageSize){
         CommonResult commonResult;
-        //List<PmsBrand> brandList = pmsBrandService.listBrand(pageNum, pageSize);
-
-        List<PmsBrand> brandList = pmsBrandService.queryListByPageAndCondition(brandParam);
+        List<PmsBrand> brandList = pmsBrandService.listBrand(pageNum, pageSize);
         if(brandList.size()>0){
             commonResult = CommonResult.success(brandList);
             LOGGER.debug("createBrand success: brandList={}", brandList);
