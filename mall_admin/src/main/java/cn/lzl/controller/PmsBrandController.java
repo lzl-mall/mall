@@ -1,6 +1,5 @@
 package cn.lzl.controller;
 
-import cn.lzl.common.api.BrandParam;
 import cn.lzl.common.api.CommonPage;
 import cn.lzl.common.api.CommonResult;
 import cn.lzl.mbg.model.PmsBrand;
@@ -90,11 +89,11 @@ public class PmsBrandController {
      * @return
      */
     @RequestMapping(value = "/list", method = RequestMethod.POST)
-    public CommonResult<CommonPage<PmsBrand>> queryListByPageAndCondition(BrandParam brandParam){
+    public CommonResult<CommonPage<PmsBrand>> queryListByPageAndCondition(Integer pageNum,Integer pageSize){
         CommonResult commonResult;
-        //List<PmsBrand> brandList = pmsBrandService.listBrand(pageNum, pageSize);
+        List<PmsBrand> brandList = pmsBrandService.listBrand(pageNum, pageSize);
 
-        List<PmsBrand> brandList = pmsBrandService.queryListByPageAndCondition(brandParam);
+        /*List<PmsBrand> brandList = pmsBrandService.queryListByPageAndCondition(brandParam);*/
         if(brandList.size()>0){
             commonResult = CommonResult.success(brandList);
             LOGGER.debug("createBrand success: brandList={}", brandList);
