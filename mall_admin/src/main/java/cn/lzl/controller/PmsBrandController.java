@@ -89,7 +89,7 @@ public class PmsBrandController {
      * 条件查询加分页
      * @return
      */
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @RequestMapping(value = "/list", method = RequestMethod.POST)
     public CommonResult<CommonPage<PmsBrand>> queryListByPageAndCondition(BrandParam brandParam){
         CommonResult commonResult;
         //List<PmsBrand> brandList = pmsBrandService.listBrand(pageNum, pageSize);

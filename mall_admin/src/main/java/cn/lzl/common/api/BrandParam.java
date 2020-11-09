@@ -18,9 +18,6 @@ public class BrandParam {
     }
 
     public void setPageStart(Integer pageStart) {
-        if(pageStart == null){
-            this.pageStart = 0;
-        }
         this.pageStart = pageStart;
     }
 
@@ -29,9 +26,14 @@ public class BrandParam {
     }
 
     public void setPageSize(Integer pageSize) {
-        if(pageSize == null){
-            this.pageSize = 3;
-        }
         this.pageSize = pageSize;
+    }
+    public BrandParam(Integer pageStart, Integer pageSize, String name) {
+        this.pageStart = pageStart;
+        this.pageSize = pageSize;
+        this.name = name;
+    }
+
+    public BrandParam() {
     }
 }
