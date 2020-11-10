@@ -10,8 +10,8 @@
     <packaging>pom</packaging>
     <description>Demo project for Spring Boot</description>
     <modules>
-        <module>mall_admin</module>
-        <module>mall_common</module>
+        <module>mall-admin</module>
+        <module>mall-common</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
