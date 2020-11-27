@@ -34,7 +34,7 @@ public class Swagger2Config {
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("SwaggerUI演示")
-                .description("mall_swarm")
+                .description("mall-swarm")
                 .contact("lzl")
                 .version("1.0")
                 .build();
