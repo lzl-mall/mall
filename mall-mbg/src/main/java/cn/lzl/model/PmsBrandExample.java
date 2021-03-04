@@ -10,6 +10,25 @@ public class PmsBrandExample {
 
     protected List<Criteria> oredCriteria;
 
+    protected String name;
+    protected Integer showStatus;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Integer getShowStatus() {
+        return showStatus;
+    }
+
+    public void setShowStatus(Integer showStatus) {
+        this.showStatus = showStatus;
+    }
+
     public PmsBrandExample() {
         oredCriteria = new ArrayList<>();
     }

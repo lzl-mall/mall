@@ -97,6 +97,30 @@
       order by ${orderByClause}
     </if>
   </select>
+  <sql id="whereSql">
+    <where>
+      <if test="name != null">
+        and name = #{name}
+      </if>
+      <if test="showStatus != null">
+        and show_status = #{showStatus}
+      </if>
+    </where>
+  </sql>
+  <select id="selectAllPage" parameterType="cn.lzl.model.PmsBrandExample" resultMap="ResultMapWithBLOBs">
+  select
+  <include refid="Base_Column_List" />,
+    <include refid="Blob_Column_List" />
+  from pms_brand
+    <where>
+      <if test="name != null">
+        and name like  concat("%",#{name},"%")
+      </if>
+      <if test="showStatus != null">
+        and show_status = #{showStatus}
+      </if>
+    </where>
+  </select>
   <select id="selectByExample" parameterType="cn.lzl.model.PmsBrandExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
@@ -355,4 +379,13 @@
       big_pic = #{bigPic,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
+
+  <delete id="batchDelete" parameterType="list">
+    delete from pms_brand
+    where id in
+    <foreach close=")" collection="list" item="item" separator="," open="(">
+      #{item}
+    </foreach>
+
+  </delete>
 </mapper>
