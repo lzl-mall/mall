@@ -2,12 +2,14 @@ package cn.lzl.controller;
 import cn.lzl.common.api.CommonPage;
 import cn.lzl.common.api.CommonResult;
 import cn.lzl.model.PmsBrand;
+import cn.lzl.model.PmsBrandExample;
 import cn.lzl.service.PmsBrandService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -16,6 +18,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/brands")
+@CrossOrigin
 public class PmsBrandController {
     @Autowired
     private PmsBrandService pmsBrandService;
@@ -80,17 +83,34 @@ public class PmsBrandController {
         }
         return commonResult;
     }
+    @RequestMapping(value = "/batchDelete", method = RequestMethod.POST)
+    public CommonResult batchDelete(@RequestParam("idList") List<Integer> idList){
+        CommonResult commonResult;
+        try{
+            pmsBrandService.batchDelete(idList);
+            commonResult = CommonResult.success(null);
+            LOGGER.debug("createBrand success: id={}", idList);
+        }catch (Exception e){
+            commonResult = CommonResult.failed("修改操作失败");
+            LOGGER.debug("createBrand failed: id={}", idList);
+        }
+        return commonResult;
+    }
     /**
      * 分页查询
      * @return
      */
     @RequestMapping(value = "/list", method = RequestMethod.POST)
-    public CommonResult<CommonPage<PmsBrand>> queryListByPageAndCondition(Integer pageNum,Integer pageSize){
+    public CommonResult<CommonPage<PmsBrand>> queryListByPageAndCondition(CommonPage commonPage, PmsBrandExample pmsBrandExample){
         CommonResult commonResult;
-        List<PmsBrand> brandList = pmsBrandService.listBrand(pageNum, pageSize);
-        if(brandList.size()>0){
-            commonResult = CommonResult.success(brandList);
-            LOGGER.debug("createBrand success: brandList={}", brandList);
+        List<PmsBrand> brandList = pmsBrandService.listBrand(commonPage.getPageNum(), commonPage.getPageSize(),pmsBrandExample);
+        Long total = pmsBrandService.countByExample();
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("total",total);
+        map.put("brandList",brandList);
+        if(brandList.size()>=0){
+            commonResult = CommonResult.success(map);
+            LOGGER.debug("createBrand success: brandList={}", map);
         }else {
             commonResult = CommonResult.failed("修改操作失败");
             LOGGER.debug("createBrand failed: {}", "修改操作失败");

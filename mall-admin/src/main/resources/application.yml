@@ -1,6 +1,8 @@
 server:
   port: 8081
 spring:
+  main:
+    allow-bean-definition-overriding: true
   datasource:
     url: jdbc:mysql://localhost:3306/mall?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
     username: root
@@ -15,10 +17,10 @@ spring:
         login-username: druid
         login-password: druid
   redis:
-    host: localhost # Redis服务器地址
+    host: 115.29.239.234 # Redis服务器地址
     database: 0 # Redis数据库索引（默认为0）
     port: 6379 # Redis服务器连接端口
-    password:  # Redis服务器连接密码（默认为空）
+    password: lzl2020 # Redis服务器连接密码（默认为空）
     timeout: 3000ms # 连接超时时间（毫秒）
   rabbitmq: #rabbitmq相关配置
     host: localhost
@@ -32,7 +34,7 @@ spring:
 mybatis:
   mapper-locations:
     - classpath:dao/*.xml
-    - classpath*:com/**/mapper/*.xml
+    - classpath*:cn/**/mapper/*.xml
 management: #开启SpringBoot Admin的监控
   endpoints:
     web:

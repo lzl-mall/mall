@@ -3,8 +3,10 @@ package cn.lzl.mapper;
 import cn.lzl.model.PmsBrand;
 import cn.lzl.model.PmsBrandExample;
 import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+@Mapper
 public interface PmsBrandMapper {
     long countByExample(PmsBrandExample example);
 
@@ -17,7 +19,7 @@ public interface PmsBrandMapper {
     int insertSelective(PmsBrand record);
 
     List<PmsBrand> selectByExampleWithBLOBs(PmsBrandExample example);
-
+    List<PmsBrand> selectAllPage(PmsBrandExample example);
     List<PmsBrand> selectByExample(PmsBrandExample example);
 
     PmsBrand selectByPrimaryKey(Long id);
@@ -33,4 +35,6 @@ public interface PmsBrandMapper {
     int updateByPrimaryKeyWithBLOBs(PmsBrand record);
 
     int updateByPrimaryKey(PmsBrand record);
+
+    int batchDelete(List<Integer> idList);
 }

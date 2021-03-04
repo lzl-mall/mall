@@ -1,6 +1,7 @@
 package cn.lzl.service;
 
 import cn.lzl.model.PmsBrand;
+import cn.lzl.model.PmsBrandExample;
 
 import java.util.List;
 
@@ -17,9 +18,13 @@ public interface PmsBrandService {
 
     int deleteBrand(Long id);
 
-    List<PmsBrand> listBrand(int pageNum, int pageSize);
+    List<PmsBrand> listBrand(int pageNum, int pageSize, PmsBrandExample pmsBrandExample);
 
     PmsBrand getBrand(Long id);
+
+    Long countByExample();
+
+    int batchDelete(List<Integer> idList);
 
     /*List<PmsBrand> queryListByPageAndCondition(BrandParam brandParam);*/
 }
